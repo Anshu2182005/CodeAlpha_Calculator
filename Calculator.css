@@ -1,25 +1,32 @@
+/* General body styling */
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif; /* Using Inter font for a modern look */
     background-color: #1a1a1a; /* Dark background */
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    color: #f0f0f0;
+    min-height: 100vh; /* Full viewport height */
+    color: #f0f0f0; /* Light text color */
     overflow: hidden; /* Hide scrollbars if content slightly overflows */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    padding: 10px; /* Add some padding around the calculator on all screens */
 }
 
+/* Calculator container styling */
 .calculator {
     background-color: #202020; /* Calculator body background */
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    width: 380px; /* Adjusted width for closer resemblance to screenshot */
+    width: 380px; /* Base width for desktop */
+    max-width: 100%; /* Ensure it doesn't overflow on smaller screens */
     padding: 15px;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
+/* Header bar for calculator */
 .header-bar {
     display: flex;
     justify-content: space-between;
@@ -34,6 +41,7 @@ body {
     color: #e0e0e0;
 }
 
+/* History/Memory tabs (commented out in HTML, but styles provided if enabled) */
 .history-memory {
     display: flex;
     gap: 15px;
@@ -53,6 +61,7 @@ body {
     border-color: #0078d4; /* Accent color for active tab */
 }
 
+/* Display area for history and current input */
 .display-container {
     text-align: right;
     margin-bottom: 20px;
@@ -66,7 +75,7 @@ body {
     margin-bottom: 5px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; /* Add ellipsis for long history */
 }
 
 .current-display {
@@ -76,28 +85,32 @@ body {
     color: #f0f0f0;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; /* Add ellipsis for long numbers */
+    line-height: 1.2; /* Adjust line height for better spacing */
 }
 
+/* Buttons grid layout */
 .buttons {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns, equal width */
+    gap: 10px; /* Space between buttons */
 }
 
+/* Common button styling */
 .btn {
     background-color: #333333; /* Dark button background */
     color: #f0f0f0;
     border: none;
-    padding: 20px 0;
+    padding: 20px 0; /* Vertical padding, horizontal handled by grid */
     font-size: 1.4rem; /* Larger font size for buttons */
-    border-radius: 5px;
+    border-radius: 5px; /* Rounded corners */
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
     -webkit-user-select: none; /* Prevent text selection */
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    touch-action: manipulation; /* Improve touch responsiveness */
 }
 
 .btn:hover {
@@ -126,33 +139,73 @@ body {
 
 .btn.equals {
     background-color: #0078d4; /* Blue color for equals button */
-    grid-column: span 1; /* Occupy 1 column */
+    /* grid-column: span 1;  This was already 1 span, not needed for default behavior */
 }
 .btn.equals:hover {
     background-color: #005a9e; /* Darker blue on hover */
 }
 
-/* Responsive Adjustments */
-@media (max-width: 450px) {
+/*
+    Responsive Adjustments using Media Queries
+    These queries target different screen sizes to adjust the layout and font sizes
+*/
+
+/* For screens smaller than 500px (e.g., most mobile phones) */
+@media (max-width: 500px) {
     .calculator {
-        width: 95%;
-        padding: 10px;
+        width: 100%; /* Take full width minus padding */
+        padding: 10px; /* Reduce padding */
+        border-radius: 0; /* Optional: Make it full width with no rounded corners */
+        box-shadow: none; /* Optional: Remove shadow for a cleaner look on mobile */
+    }
+    body {
+        padding: 0; /* Remove body padding on very small screens if calculator is full width */
     }
     .btn {
-        padding: 15px 0;
-        font-size: 1.2rem;
+        padding: 15px 0; /* Reduce button padding */
+        font-size: 1.2rem; /* Adjust button font size */
     }
     .current-display {
-        font-size: 3rem;
+        font-size: 2.8rem; /* Smaller font for current result */
+        min-height: 50px;
     }
     .history-display {
-        font-size: 0.9rem;
+        font-size: 0.85rem; /* Smaller font for history */
+        min-height: 20px;
     }
     .menu-icon {
-        font-size: 1rem;
+        font-size: 0.9rem; /* Smaller font for menu icon */
     }
-    .history-memory {
-        gap: 10px;
-        font-size: 0.8rem;
+    .header-bar {
+        margin-bottom: 15px; /* Reduce margin */
+        padding: 0 5px;
+    }
+    .display-container {
+        margin-bottom: 15px;
+        padding: 0 5px;
+    }
+    .buttons {
+        gap: 8px; /* Reduce gap between buttons */
+    }
+}
+
+/* For even smaller screens, like older or very compact phones */
+@media (max-width: 350px) {
+    .btn {
+        padding: 12px 0; /* Further reduce button padding */
+        font-size: 1.1rem; /* Further adjust button font size */
+    }
+    .current-display {
+        font-size: 2.2rem; /* Even smaller font for current display */
+        min-height: 40px;
+    }
+    .history-display {
+        font-size: 0.8rem; /* Even smaller font for history */
+    }
+    .header-bar {
+        margin-bottom: 10px;
+    }
+    .display-container {
+        margin-bottom: 10px;
     }
 }
