@@ -173,6 +173,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 result = num * -1;
                 history = 'negate(' + num + ') ='; // For display clarity
                 break;
+            case "1/x":
+                if (num === 0) {
+                    currentInput = 'Error';
+                    history = '';
+                    updateDisplay();
+                    return;
+                }
+                result = 1 / num;
+                history = '1/(' + num + ') =';
+                break;
             default:
                 return;
         }
