@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 result = num * -1;
                 history = 'negate(' + num + ') ='; // For display clarity
                 break;
-            case "1/x":
+            case "¹/ₓ":
                 if (num === 0) {
                     currentInput = 'Error';
                     history = '';
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chooseOperator(input);
         } else if (input === '=') {
             calculate();
-        } else if (['%', 'x²', '√x', '1/x', '+/-'].includes(input)) {
+        } else if (['%', 'x²', '√x', '¹/ₓ', '+/-'].includes(input)) {
             applyFunction(input);
         } else if (/\d/.test(input)) { // Check if it's a digit
             appendNumber(input);
