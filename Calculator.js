@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chooseOperator(input);
         } else if (input === '=') {
             calculate();
-        } else if (['%', 'x²', '√x', '+/-'].includes(input)) {
+        } else if (['%', 'x²', '√x', '1/x', '+/-'].includes(input)) {
             applyFunction(input);
         } else if (/\d/.test(input)) { // Check if it's a digit
             appendNumber(input);
